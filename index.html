@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Piano Corner Studio - Fun Piano Lessons for Kids</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -74,9 +74,9 @@
             display: flex;
             align-items: center;
             font-size: 24px;
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text-dark);
-            font-family: 'Fredoka One', cursive;
+            font-family: 'Fredoka', cursive;
         }
 
         .nav-logo i {
@@ -162,9 +162,9 @@
 
         .hero-title {
             font-size: 3.5rem;
-            font-weight: 400;
+            font-weight: 600;
             margin-bottom: 20px;
-            font-family: 'Fredoka One', cursive;
+            font-family: 'Fredoka', cursive;
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -316,9 +316,9 @@
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            font-weight: 400;
+            font-weight: 600;
             margin-bottom: 60px;
-            font-family: 'Fredoka One', cursive;
+            font-family: 'Fredoka', cursive;
             color: var(--text-dark);
             position: relative;
         }
@@ -350,9 +350,9 @@
         .about-text h2 {
             font-size: 2rem;
             margin-bottom: 20px;
-            font-family: 'Fredoka One', cursive;
+            font-family: 'Fredoka', cursive;
             color: var(--text-dark);
-            font-weight: 400;
+            font-weight: 600;
         }
 
         .about-text p {
@@ -470,8 +470,8 @@
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--text-dark);
-            font-family: 'Fredoka One', cursive;
-            font-weight: 400;
+            font-family: 'Fredoka', cursive;
+            font-weight: 600;
         }
 
         .lesson-card p {
@@ -565,8 +565,8 @@
             font-size: 1.8rem;
             margin-bottom: 30px;
             color: var(--text-dark);
-            font-family: 'Fredoka One', cursive;
-            font-weight: 400;
+            font-family: 'Fredoka', cursive;
+            font-weight: 600;
         }
 
         .contact-item {
@@ -625,8 +625,8 @@
         }
 
         .contact-form h3 {
-            font-family: 'Fredoka One', cursive;
-            font-weight: 400;
+            font-family: 'Fredoka', cursive;
+            font-weight: 600;
         }
 
         .form-group {
@@ -690,8 +690,8 @@
             display: flex;
             align-items: center;
             font-size: 1.8rem;
-            font-weight: 400;
-            font-family: 'Fredoka One', cursive;
+            font-weight: 600;
+            font-family: 'Fredoka', cursive;
         }
 
         .footer-logo i {
@@ -899,8 +899,8 @@
             <h1 class="hero-title">Start Your Musical Adventure!</h1>
             <p class="hero-subtitle">Fun, engaging piano lessons designed for young musicians ages 5-14</p>
             <div class="hero-buttons">
-                <button class="btn btn-primary">Book Your First Lesson</button>
-                <button class="btn btn-secondary">See How We Learn</button>
+                <a href="#contact" class="btn btn-primary">Book Your First Lesson</a>
+                <a href="#lessons" class="btn btn-secondary">See How We Learn</a>
             </div>
         </div>
         <div class="hero-image">
@@ -969,7 +969,7 @@
                     <h3>Little Sprouts (Ages 5-7)</h3>
                     <p>Perfect first piano experience! We use games, stories, and simple songs to introduce your little one to the magical world of music. Every lesson is an adventure!</p>
                     <div class="price">$35/30min</div>
-                    <button class="btn btn-primary">Start the Adventure</button>
+                    <a href="#contact" class="btn btn-primary">Start the Adventure</a>
                 </div>
                 
                 <div class="lesson-card">
@@ -979,7 +979,7 @@
                     <h3>Young Explorers (Ages 8-10)</h3>
                     <p>Ready to explore more? We'll learn popular songs, fun technique games, and start reading music together. Your child will love showing off their new skills!</p>
                     <div class="price">$40/45min</div>
-                    <button class="btn btn-outline">Explore Music</button>
+                    <a href="#contact" class="btn btn-outline">Explore Music</a>
                 </div>
                 
                 <div class="lesson-card">
@@ -989,7 +989,7 @@
                     <h3>Rising Stars (Ages 11-14)</h3>
                     <p>For tweens and teens ready to shine! We'll work on their favorite songs, build confidence, and maybe even prepare for school performances or their first recital. Perfect for middle schoolers!</p>
                     <div class="price">$45/hour</div>
-                    <button class="btn btn-outline">Reach for the Stars</button>
+                    <a href="#contact" class="btn btn-outline">Reach for the Stars</a>
                 </div>
             </div>
             
@@ -1289,16 +1289,7 @@
             note.style.animationDuration = randomDuration + 's';
         });
 
-        // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.hero');
-            const speed = scrolled * 0.5;
-            
-            if (parallax) {
-                parallax.style.transform = `translateY(${speed}px)`;
-            }
-        });
+        /* Parallax effect for hero section - REMOVED to fix scrolling issue */
 
         // Load animations on page load
         window.addEventListener('load', () => {
