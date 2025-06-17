@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Piano Corner Studio - Fun Piano Lessons for Kids</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -76,7 +78,7 @@
             font-size: 24px;
             font-weight: 600;
             color: var(--text-dark);
-            font-family: 'Fredoka', cursive;
+            font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
         }
 
         .nav-logo i {
@@ -113,7 +115,11 @@
             transition: width 0.3s ease;
         }
 
-        .nav-link:hover::after {
+        .nav-link.active {
+            color: var(--hot-pink);
+        }
+
+        .nav-link.active::after {
             width: 100%;
         }
 
@@ -162,9 +168,9 @@
 
         .hero-title {
             font-size: 3.5rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 20px;
-            font-family: 'Fredoka', cursive;
+            font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -318,7 +324,7 @@
             font-size: 2.5rem;
             font-weight: 600;
             margin-bottom: 60px;
-            font-family: 'Fredoka', cursive;
+            font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
             color: var(--text-dark);
             position: relative;
         }
@@ -350,7 +356,7 @@
         .about-text h2 {
             font-size: 2rem;
             margin-bottom: 20px;
-            font-family: 'Fredoka', cursive;
+            font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
             color: var(--text-dark);
             font-weight: 600;
         }
@@ -417,12 +423,19 @@
             transition: all 0.3s ease;
             position: relative;
             border: 2px solid rgba(255, 20, 147, 0.05);
+            cursor: pointer;
         }
 
         .lesson-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-white-hover);
             border-color: var(--hot-pink-light);
+        }
+
+        .lesson-card .btn {
+            pointer-events: auto;
+            z-index: 10;
+            position: relative;
         }
 
         .lesson-card.featured {
@@ -470,7 +483,7 @@
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--text-dark);
-            font-family: 'Fredoka', cursive;
+            font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
             font-weight: 600;
         }
 
@@ -565,7 +578,7 @@
             font-size: 1.8rem;
             margin-bottom: 30px;
             color: var(--text-dark);
-            font-family: 'Fredoka', cursive;
+            font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
             font-weight: 600;
         }
 
@@ -625,7 +638,7 @@
         }
 
         .contact-form h3 {
-            font-family: 'Fredoka', cursive;
+            font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
             font-weight: 600;
         }
 
@@ -691,7 +704,7 @@
             align-items: center;
             font-size: 1.8rem;
             font-weight: 600;
-            font-family: 'Fredoka', cursive;
+            font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
         }
 
         .footer-logo i {
@@ -1228,10 +1241,12 @@
             }, 1500);
         });
 
-        // Interactive card hover effects
+        // Interactive card hover effects - UPDATED to not interfere with buttons
         document.querySelectorAll('.lesson-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px) scale(1.02)';
+                if (!card.classList.contains('featured')) {
+                    card.style.transform = 'translateY(-10px) scale(1.02)';
+                }
             });
             
             card.addEventListener('mouseleave', () => {
@@ -1258,9 +1273,25 @@
             item.style.cursor = 'pointer';
         });
 
-        // Button interactions
+        // Button interactions - ENHANCED for debugging
         document.querySelectorAll('.btn').forEach(btn => {
+            // Add click handler for buttons
             btn.addEventListener('click', (e) => {
+                console.log('Button clicked:', btn.textContent);
+                
+                // If it's a link button, let it navigate
+                if (btn.tagName === 'A' && btn.getAttribute('href')) {
+                    console.log('Navigating to:', btn.getAttribute('href'));
+                    return; // Let the default link behavior happen
+                }
+                
+                // For form submit buttons, prevent default and handle
+                if (btn.type === 'submit') {
+                    e.preventDefault();
+                    console.log('Form submit button clicked');
+                    return;
+                }
+                
                 // Create ripple effect
                 const ripple = document.createElement('span');
                 const rect = btn.getBoundingClientRect();
