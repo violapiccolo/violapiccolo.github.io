@@ -1034,7 +1034,7 @@
                             <h3>Little Sprouts</h3>
                             <span class="age-range">Ages 5-7</span>
                             <p>Perfect first piano experience! We use games, stories, and simple songs to introduce your little one to the magical world of music.</p>
-                            <div class="price">$35/30min</div>
+                            <div class="price">$30/30min</div>
                             <button class="btn btn-outline lesson-btn" data-lesson-type="Little Sprouts (Ages 5-7)" data-ages="5,6,7">Start the Adventure</button>
                         </div>
                         <div class="lesson-card-back">
@@ -1069,7 +1069,7 @@
                             <h3>Young Explorers</h3>
                             <span class="age-range">Ages 8-10</span>
                             <p>Ready to explore more? We'll learn popular songs, fun technique games, and start reading music together.</p>
-                            <div class="price">$40/45min</div>
+                            <div class="price">$45/45min</div>
                             <button class="btn btn-outline lesson-btn" data-lesson-type="Young Explorers (Ages 8-10)" data-ages="8,9,10">Explore Music</button>
                         </div>
                         <div class="lesson-card-back">
@@ -1104,7 +1104,7 @@
                             <h3>Rising Stars</h3>
                             <span class="age-range">Ages 11-14</span>
                             <p>For tweens and teens ready to shine! We'll work on their favorite songs, build confidence, and maybe even prepare for performances.</p>
-                            <div class="price">$45/hour</div>
+                            <div class="price">$60/hour</div>
                             <button class="btn btn-outline lesson-btn" data-lesson-type="Rising Stars (Ages 11-14)" data-ages="11,12,13,14">Reach for the Stars</button>
                         </div>
                         <div class="lesson-card-back">
@@ -1238,9 +1238,9 @@
                     <div class="form-group">
                         <select name="lessonType" id="lessonType" required>
                             <option value="">Which lesson type interests you?</option>
-                            <option value="Little Sprouts (Ages 5-7)">Little Sprouts (Ages 5-7) - $35/30min</option>
-                            <option value="Young Explorers (Ages 8-10)">Young Explorers (Ages 8-10) - $40/45min</option>
-                            <option value="Rising Stars (Ages 11-14)">Rising Stars (Ages 11-14) - $45/hour</option>
+                            <option value="Little Sprouts (Ages 5-7)">Little Sprouts - $30/30min</option>
+                            <option value="Young Explorers (Ages 8-10)">Young Explorers - $45/45min</option>
+                            <option value="Rising Stars (Ages 11-14)">Rising Stars - $60/hour</option>
                             <option value="Not sure yet">Not sure yet - help me decide!</option>
                         </select>
                     </div>
@@ -1438,60 +1438,6 @@
                 submitBtn.disabled = false;
             }, 1500);
         });
-
-        // Age-based lesson recommendations (suggestions, not automatic)
-        document.querySelector('#childAge').addEventListener('change', (e) => {
-            const age = parseInt(e.target.value);
-            const lessonTypeSelect = document.querySelector('#lessonType');
-            
-            // Only suggest if no lesson type is already selected
-            if (lessonTypeSelect.value === '') {
-                if (age >= 5 && age <= 7) {
-                    // Suggest but don't auto-select - add visual hint
-                    highlightSuggestedOption(lessonTypeSelect, 'Little Sprouts (Ages 5-7)', 'Suggested for age ' + age);
-                } else if (age >= 8 && age <= 10) {
-                    highlightSuggestedOption(lessonTypeSelect, 'Young Explorers (Ages 8-10)', 'Suggested for age ' + age);
-                } else if (age >= 11 && age <= 14) {
-                    highlightSuggestedOption(lessonTypeSelect, 'Rising Stars (Ages 11-14)', 'Suggested for age ' + age);
-                }
-            }
-        });
-
-        // Function to highlight suggested option without auto-selecting
-        function highlightSuggestedOption(selectElement, optionValue, message) {
-            // Add visual feedback to suggest the option
-            selectElement.style.borderColor = 'var(--hot-pink-light)';
-            selectElement.style.boxShadow = '0 0 0 3px rgba(255, 105, 180, 0.1)';
-            
-            // Create a temporary tooltip-style message
-            const suggestion = document.createElement('div');
-            suggestion.textContent = message + ' - but feel free to choose any option!';
-            suggestion.style.cssText = `
-                position: absolute;
-                background: var(--hot-pink);
-                color: white;
-                padding: 8px 12px;
-                border-radius: 6px;
-                font-size: 0.85rem;
-                top: -40px;
-                left: 0;
-                z-index: 1000;
-                white-space: nowrap;
-                animation: fadeInUp 0.3s ease;
-            `;
-            
-            selectElement.parentElement.style.position = 'relative';
-            selectElement.parentElement.appendChild(suggestion);
-            
-            // Remove the suggestion after 3 seconds
-            setTimeout(() => {
-                if (suggestion.parentElement) {
-                    suggestion.remove();
-                }
-                selectElement.style.borderColor = '';
-                selectElement.style.boxShadow = '';
-            }, 3000);
-        }
 
         // Intersection Observer for animations
         const observerOptions = {
