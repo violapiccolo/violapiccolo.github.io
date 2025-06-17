@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+.lesson-card-back .btn {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }        .lesson-card-back h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
+            font-weight: 600;
+        }<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -424,42 +434,51 @@
             position: relative;
             border: 2px solid rgba(255, 20, 147, 0.05);
             cursor: pointer;
+            perspective: 1000px;
+            height: 520px;
         }
 
         .lesson-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-white-hover);
             border-color: var(--hot-pink-light);
         }
 
-        .lesson-card .btn {
-            pointer-events: auto;
-            z-index: 10;
+        .lesson-card.selected {
+            border-color: var(--hot-pink);
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.03) 0%, rgba(255, 105, 180, 0.03) 100%);
+            box-shadow: var(--shadow);
+        }
+
+        .lesson-card-inner {
             position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
         }
 
-        .lesson-card.featured {
-            border: 3px solid var(--hot-pink);
-            transform: scale(1.05);
-            box-shadow: var(--shadow);
+        .lesson-card.flipped .lesson-card-inner {
+            transform: rotateY(180deg);
         }
 
-        .lesson-card.featured:hover {
-            transform: scale(1.05) translateY(-10px);
-        }
-
-        .featured-badge {
+        .lesson-card-front, .lesson-card-back {
             position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient);
-            color: white;
-            padding: 8px 25px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            box-shadow: var(--shadow);
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: var(--border-radius);
+        }
+
+        .lesson-card-back {
+            transform: rotateY(180deg);
+            background: var(--white);
+            padding: 10px;
+            overflow: hidden;
         }
 
         .card-icon {
@@ -493,6 +512,14 @@
             line-height: 1.6;
         }
 
+        .age-range {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--hot-pink);
+            margin-bottom: 15px;
+            display: block;
+        }
+
         .price {
             font-size: 1.8rem;
             font-weight: 700;
@@ -501,6 +528,42 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 20px;
+        }
+
+        .lesson-details {
+            text-align: left;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+
+        .lesson-details h4 {
+            color: var(--hot-pink);
+            margin-bottom: 6px;
+            font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .lesson-details ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+
+        .lesson-details li {
+            padding: 2px 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 12px;
+            font-size: 0.8rem;
+            line-height: 1.2;
+        }
+
+        .lesson-details li::before {
+            content: '♪';
+            position: absolute;
+            left: 0;
+            color: var(--hot-pink);
+            font-weight: bold;
         }
 
         /* Gallery Section */
@@ -768,19 +831,6 @@
             border-radius: var(--border-radius);
         }
 
-        @keyframes pulse-pink {
-            0%, 100% {
-                box-shadow: var(--shadow);
-            }
-            50% {
-                box-shadow: var(--shadow-hover);
-            }
-        }
-
-        .lesson-card.featured {
-            animation: pulse-pink 4s ease-in-out infinite;
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .hamburger {
@@ -841,10 +891,6 @@
                 grid-template-columns: 1fr;
             }
             
-            .lesson-card.featured {
-                transform: none;
-            }
-            
             .gallery-grid {
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
@@ -856,6 +902,11 @@
             
             .btn {
                 width: 200px;
+            }
+
+            .lesson-card {
+                height: auto;
+                min-height: 450px;
             }
         }
 
@@ -942,7 +993,7 @@
                 </div>
                 <div class="about-text">
                     <h2>Hi, I'm Nika!</h2>
-                    <p>I started my piano journey when I was just 5 years old, and it has been the most amazing adventure! For over 10 years, I've been discovering the magic of music, and now I want to share that same joy and excitement with your little ones.</p>
+                    <p>I started my piano journey when I was just 5 years old, and it has been the most amazing adventure! For over 12 years, I've been discovering the magic of music, and now I want to share that same joy and excitement with your little ones.</p>
                     
                     <p>I absolutely love working with young children because I remember exactly what it felt like to sit at the piano for the first time. My goal is to make every lesson fun, encouraging, and filled with discovery so your child can fall in love with music just like I did!</p>
                     
@@ -953,7 +1004,7 @@
                         </div>
                         <div class="credential-item">
                             <i class="fas fa-music"></i>
-                            <span>10+ Years of Piano Experience</span>
+                            <span>12+ Years of Piano Experience</span>
                         </div>
                         <div class="credential-item">
                             <i class="fas fa-child"></i>
@@ -974,35 +1025,109 @@
         <div class="container">
             <h2 class="section-title">Fun Learning Adventures</h2>
             <div class="lessons-grid">
-                <div class="lesson-card featured">
-                    <div class="featured-badge">Perfect for Beginners!</div>
-                    <div class="card-icon">
-                        <i class="fas fa-seedling"></i>
+                <div class="lesson-card" data-lesson="little-sprouts" data-ages="5,6,7">
+                    <div class="lesson-card-inner">
+                        <div class="lesson-card-front">
+                            <div class="card-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h3>Little Sprouts</h3>
+                            <span class="age-range">Ages 5-7</span>
+                            <p>Perfect first piano experience! We use games, stories, and simple songs to introduce your little one to the magical world of music.</p>
+                            <div class="price">$35/30min</div>
+                            <button class="btn btn-outline lesson-btn" data-lesson-type="Little Sprouts (Ages 5-7)" data-ages="5,6,7">Start the Adventure</button>
+                        </div>
+                        <div class="lesson-card-back">
+                            <h3>Little Sprouts Details</h3>
+                            <div class="lesson-details">
+                                <h4>What We'll Learn:</h4>
+                                <ul>
+                                    <li>Basic finger positions and posture</li>
+                                    <li>Simple melodies with fun stories</li>
+                                    <li>Musical games and activities</li>
+                                    <li>Beginning note recognition</li>
+                                    <li>Rhythm with clapping and movement</li>
+                                </ul>
+                                <h4>Perfect For:</h4>
+                                <ul>
+                                    <li>Complete beginners</li>
+                                    <li>Short attention spans</li>
+                                    <li>Learning through play</li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-outline lesson-btn" data-lesson-type="Little Sprouts (Ages 5-7)" data-ages="5,6,7">Book This Lesson</button>
+                        </div>
                     </div>
-                    <h3>Little Sprouts (Ages 5-7)</h3>
-                    <p>Perfect first piano experience! We use games, stories, and simple songs to introduce your little one to the magical world of music. Every lesson is an adventure!</p>
-                    <div class="price">$35/30min</div>
-                    <a href="#contact" class="btn btn-primary">Start the Adventure</a>
                 </div>
                 
-                <div class="lesson-card">
-                    <div class="card-icon">
-                        <i class="fas fa-rocket"></i>
+                <div class="lesson-card" data-lesson="young-explorers" data-ages="8,9,10">
+                    <div class="lesson-card-inner">
+                        <div class="lesson-card-front">
+                            <div class="card-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3>Young Explorers</h3>
+                            <span class="age-range">Ages 8-10</span>
+                            <p>Ready to explore more? We'll learn popular songs, fun technique games, and start reading music together.</p>
+                            <div class="price">$40/45min</div>
+                            <button class="btn btn-outline lesson-btn" data-lesson-type="Young Explorers (Ages 8-10)" data-ages="8,9,10">Explore Music</button>
+                        </div>
+                        <div class="lesson-card-back">
+                            <h3>Young Explorers Details</h3>
+                            <div class="lesson-details">
+                                <h4>What We'll Learn:</h4>
+                                <ul>
+                                    <li>Popular songs they love</li>
+                                    <li>Basic music reading skills</li>
+                                    <li>Proper technique through games</li>
+                                    <li>Simple chord progressions</li>
+                                    <li>Performance confidence building</li>
+                                </ul>
+                                <h4>Perfect For:</h4>
+                                <ul>
+                                    <li>Kids ready for more challenge</li>
+                                    <li>Building reading skills</li>
+                                    <li>Learning favorite songs</li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-outline lesson-btn" data-lesson-type="Young Explorers (Ages 8-10)" data-ages="8,9,10">Book This Lesson</button>
+                        </div>
                     </div>
-                    <h3>Young Explorers (Ages 8-10)</h3>
-                    <p>Ready to explore more? We'll learn popular songs, fun technique games, and start reading music together. Your child will love showing off their new skills!</p>
-                    <div class="price">$40/45min</div>
-                    <a href="#contact" class="btn btn-outline">Explore Music</a>
                 </div>
                 
-                <div class="lesson-card">
-                    <div class="card-icon">
-                        <i class="fas fa-star"></i>
+                <div class="lesson-card" data-lesson="rising-stars" data-ages="11,12,13,14">
+                    <div class="lesson-card-inner">
+                        <div class="lesson-card-front">
+                            <div class="card-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3>Rising Stars</h3>
+                            <span class="age-range">Ages 11-14</span>
+                            <p>For tweens and teens ready to shine! We'll work on their favorite songs, build confidence, and maybe even prepare for performances.</p>
+                            <div class="price">$45/hour</div>
+                            <button class="btn btn-outline lesson-btn" data-lesson-type="Rising Stars (Ages 11-14)" data-ages="11,12,13,14">Reach for the Stars</button>
+                        </div>
+                        <div class="lesson-card-back">
+                            <h3>Rising Stars Details</h3>
+                            <div class="lesson-details">
+                                <h4>What We'll Learn:</h4>
+                                <ul>
+                                    <li>Advanced popular songs</li>
+                                    <li>Music theory concepts</li>
+                                    <li>Performance preparation</li>
+                                    <li>Personal style development</li>
+                                    <li>Recording and sharing music</li>
+                                </ul>
+                                <h4>Perfect For:</h4>
+                                <ul>
+                                    <li>Tweens and teens</li>
+                                    <li>School performance prep</li>
+                                    <li>Building serious skills</li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-outline lesson-btn" data-lesson-type="Rising Stars (Ages 11-14)" data-ages="11,12,13,14">Book This Lesson</button>
+                        </div>
                     </div>
-                    <h3>Rising Stars (Ages 11-14)</h3>
-                    <p>For tweens and teens ready to shine! We'll work on their favorite songs, build confidence, and maybe even prepare for school performances or their first recital. Perfect for middle schoolers!</p>
-                    <div class="price">$45/hour</div>
-                    <a href="#contact" class="btn btn-outline">Reach for the Stars</a>
                 </div>
             </div>
             
@@ -1080,23 +1205,23 @@
                     </div>
                 </div>
                 
-                <form class="contact-form">
+                <form class="contact-form" id="contactForm">
                     <h3 style="color: var(--text-dark); margin-bottom: 20px; text-align: center;">Tell Me About Your Young Musician!</h3>
                     
                     <div class="form-group">
-                        <input type="text" placeholder="Parent/Guardian Name" required>
+                        <input type="text" name="parentName" placeholder="Parent/Guardian Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Phone Number">
+                        <input type="tel" name="phone" placeholder="Phone Number">
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Child's Name">
+                        <input type="text" name="childName" placeholder="Child's Name">
                     </div>
                     <div class="form-group">
-                        <select required>
+                        <select name="childAge" id="childAge" required>
                             <option value="">Child's Age</option>
                             <option value="5">5 years old</option>
                             <option value="6">6 years old</option>
@@ -1111,7 +1236,16 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Tell me about your child! Do they love music? Any favorite songs? Have they shown interest in piano? Any questions you have?" rows="4"></textarea>
+                        <select name="lessonType" id="lessonType" required>
+                            <option value="">Which lesson type interests you?</option>
+                            <option value="Little Sprouts (Ages 5-7)">Little Sprouts (Ages 5-7) - $35/30min</option>
+                            <option value="Young Explorers (Ages 8-10)">Young Explorers (Ages 8-10) - $40/45min</option>
+                            <option value="Rising Stars (Ages 11-14)">Rising Stars (Ages 11-14) - $45/hour</option>
+                            <option value="Not sure yet">Not sure yet - help me decide!</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Tell me about your child! Do they love music? Any favorite songs? Have they shown interest in piano? Any questions you have?" rows="4"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">Let's Start the Musical Adventure!</button>
                 </form>
@@ -1195,102 +1329,75 @@
             }
         });
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Lesson card interactions
+        let selectedCard = null;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.querySelectorAll('.lesson-card, .gallery-item, .contact-info, .contact-form').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Form submission handling
-        const contactForm = document.querySelector('.contact-form');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const formObject = {};
-            formData.forEach((value, key) => {
-                formObject[key] = value;
-            });
-            
-            // Show loading state
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            // Simulate form submission (replace with actual form handling)
-            setTimeout(() => {
-                alert('Thank you for your message! I will get back to you soon.');
-                contactForm.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
-        });
-
-        // Interactive card hover effects - UPDATED to not interfere with buttons
         document.querySelectorAll('.lesson-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                if (!card.classList.contains('featured')) {
-                    card.style.transform = 'translateY(-10px) scale(1.02)';
-                }
-            });
+            // Ensure no cards are selected on load
+            card.classList.remove('selected', 'flipped');
             
-            card.addEventListener('mouseleave', () => {
-                if (card.classList.contains('featured')) {
-                    card.style.transform = 'scale(1.05)';
-                } else {
-                    card.style.transform = 'translateY(0) scale(1)';
-                }
-            });
-        });
-
-        // Gallery item click handlers (placeholder functionality)
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const isVideo = item.querySelector('.video-placeholder');
-                if (isVideo) {
-                    alert('Video player would open here');
-                } else {
-                    alert('Image lightbox would open here');
-                }
-            });
-            
-            // Add pointer cursor to indicate clickability
-            item.style.cursor = 'pointer';
-        });
-
-        // Button interactions - ENHANCED for debugging
-        document.querySelectorAll('.btn').forEach(btn => {
-            // Add click handler for buttons
-            btn.addEventListener('click', (e) => {
-                console.log('Button clicked:', btn.textContent);
-                
-                // If it's a link button, let it navigate
-                if (btn.tagName === 'A' && btn.getAttribute('href')) {
-                    console.log('Navigating to:', btn.getAttribute('href'));
-                    return; // Let the default link behavior happen
-                }
-                
-                // For form submit buttons, prevent default and handle
-                if (btn.type === 'submit') {
-                    e.preventDefault();
-                    console.log('Form submit button clicked');
+            // Card selection (highlighting)
+            card.addEventListener('click', (e) => {
+                // Don't trigger card selection if clicking a button
+                if (e.target.classList.contains('lesson-btn') || e.target.closest('.lesson-btn')) {
                     return;
                 }
+                
+                // Toggle flip and selection for clicked card
+                if (card.classList.contains('flipped')) {
+                    card.classList.remove('flipped');
+                    card.classList.remove('selected');
+                    selectedCard = null;
+                } else {
+                    // Remove flip and selection from all cards first
+                    document.querySelectorAll('.lesson-card').forEach(c => {
+                        c.classList.remove('flipped', 'selected');
+                    });
+                    
+                    card.classList.add('flipped');
+                    card.classList.add('selected');
+                    selectedCard = card;
+                }
+            });
+        });
+
+        // Lesson button interactions
+        document.querySelectorAll('.lesson-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const lessonType = btn.getAttribute('data-lesson-type');
+                const ages = btn.getAttribute('data-ages').split(',');
+                
+                // Scroll to contact section
+                document.querySelector('#contact').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Set lesson type in contact form
+                setTimeout(() => {
+                    const lessonTypeSelect = document.querySelector('#lessonType');
+                    const childAgeSelect = document.querySelector('#childAge');
+                    
+                    // Set the lesson type
+                    lessonTypeSelect.value = lessonType;
+                    
+                    // If only one age in range, set it automatically
+                    if (ages.length === 1) {
+                        childAgeSelect.value = ages[0];
+                    }
+                    
+                    // Add visual feedback
+                    lessonTypeSelect.style.borderColor = 'var(--hot-pink)';
+                    lessonTypeSelect.style.boxShadow = '0 0 0 3px rgba(255, 20, 147, 0.1)';
+                    
+                    setTimeout(() => {
+                        lessonTypeSelect.style.borderColor = '';
+                        lessonTypeSelect.style.boxShadow = '';
+                    }, 2000);
+                }, 500);
                 
                 // Create ripple effect
                 const ripple = document.createElement('span');
@@ -1312,6 +1419,113 @@
             });
         });
 
+        // Form submission handling
+        const contactForm = document.querySelector('#contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual form handling)
+            setTimeout(() => {
+                alert('Thank you for your message! I will get back to you soon to schedule your child\'s musical adventure!');
+                contactForm.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Age-based lesson recommendations (suggestions, not automatic)
+        document.querySelector('#childAge').addEventListener('change', (e) => {
+            const age = parseInt(e.target.value);
+            const lessonTypeSelect = document.querySelector('#lessonType');
+            
+            // Only suggest if no lesson type is already selected
+            if (lessonTypeSelect.value === '') {
+                if (age >= 5 && age <= 7) {
+                    // Suggest but don't auto-select - add visual hint
+                    highlightSuggestedOption(lessonTypeSelect, 'Little Sprouts (Ages 5-7)', 'Suggested for age ' + age);
+                } else if (age >= 8 && age <= 10) {
+                    highlightSuggestedOption(lessonTypeSelect, 'Young Explorers (Ages 8-10)', 'Suggested for age ' + age);
+                } else if (age >= 11 && age <= 14) {
+                    highlightSuggestedOption(lessonTypeSelect, 'Rising Stars (Ages 11-14)', 'Suggested for age ' + age);
+                }
+            }
+        });
+
+        // Function to highlight suggested option without auto-selecting
+        function highlightSuggestedOption(selectElement, optionValue, message) {
+            // Add visual feedback to suggest the option
+            selectElement.style.borderColor = 'var(--hot-pink-light)';
+            selectElement.style.boxShadow = '0 0 0 3px rgba(255, 105, 180, 0.1)';
+            
+            // Create a temporary tooltip-style message
+            const suggestion = document.createElement('div');
+            suggestion.textContent = message + ' - but feel free to choose any option!';
+            suggestion.style.cssText = `
+                position: absolute;
+                background: var(--hot-pink);
+                color: white;
+                padding: 8px 12px;
+                border-radius: 6px;
+                font-size: 0.85rem;
+                top: -40px;
+                left: 0;
+                z-index: 1000;
+                white-space: nowrap;
+                animation: fadeInUp 0.3s ease;
+            `;
+            
+            selectElement.parentElement.style.position = 'relative';
+            selectElement.parentElement.appendChild(suggestion);
+            
+            // Remove the suggestion after 3 seconds
+            setTimeout(() => {
+                if (suggestion.parentElement) {
+                    suggestion.remove();
+                }
+                selectElement.style.borderColor = '';
+                selectElement.style.boxShadow = '';
+            }, 3000);
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.lesson-card, .gallery-item, .contact-info, .contact-form').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Gallery item click handlers
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const isVideo = item.querySelector('.video-placeholder');
+                if (isVideo) {
+                    alert('Video player would open here');
+                } else {
+                    alert('Image lightbox would open here');
+                }
+            });
+            
+            item.style.cursor = 'pointer';
+        });
+
         // Floating notes animation randomization
         document.querySelectorAll('.note').forEach((note, index) => {
             const randomDelay = Math.random() * 2;
@@ -1320,14 +1534,10 @@
             note.style.animationDuration = randomDuration + 's';
         });
 
-        /* Parallax effect for hero section - REMOVED to fix scrolling issue */
-
         // Load animations on page load
         window.addEventListener('load', () => {
-            // Add loaded class to body for any CSS animations that should trigger on load
             document.body.classList.add('loaded');
             
-            // Trigger any additional load animations here
             const heroElements = document.querySelectorAll('.hero-title, .hero-subtitle, .hero-buttons');
             heroElements.forEach((el, index) => {
                 setTimeout(() => {
@@ -1350,7 +1560,6 @@
             };
         }
 
-        // Apply debounce to scroll-heavy functions
         const debouncedScrollHandler = debounce(() => {
             // Any heavy scroll operations go here
         }, 10);
@@ -1359,7 +1568,6 @@
 
         // Accessibility improvements
         document.addEventListener('keydown', (e) => {
-            // ESC key closes mobile menu
             if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
@@ -1369,7 +1577,6 @@
         // Focus management for mobile menu
         hamburger.addEventListener('click', () => {
             if (navMenu.classList.contains('active')) {
-                // Focus first menu item when menu opens
                 const firstMenuItem = navMenu.querySelector('.nav-link');
                 if (firstMenuItem) {
                     setTimeout(() => firstMenuItem.focus(), 100);
