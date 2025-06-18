@@ -1,22 +1,10 @@
-.lesson-card-back .btn {
-            padding: 10px 20px;
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }        .lesson-card-back h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-            font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
-            font-weight: 600;
-        }<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Piano Corner Studio - Fun Piano Lessons for Kids</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -51,6 +39,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
         }
 
         .container {
@@ -566,6 +555,20 @@
             font-weight: bold;
         }
 
+        .lesson-card-back h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
+            font-weight: 600;
+        }
+
+        .lesson-card-back .btn {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
         /* Gallery Section */
         .gallery {
             background: var(--white);
@@ -848,6 +851,7 @@
                 transition: 0.3s;
                 box-shadow: var(--shadow);
                 padding: 20px 0;
+                z-index: 999;
             }
             
             .nav-menu.active {
@@ -867,6 +871,8 @@
             .hero-buttons {
                 justify-content: center;
                 flex-wrap: wrap;
+                flex-direction: column;
+                align-items: center;
             }
             
             .hero-image {
@@ -889,24 +895,103 @@
             
             .lessons-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .lesson-card {
+                height: auto;
+                min-height: 400px;
+                margin: 0 10px;
+                perspective: none;
+            }
+            
+            /* Disable flip animation on mobile for better UX */
+            .lesson-card-inner {
+                transform: none !important;
+                transition: none;
+            }
+            
+            .lesson-card.flipped .lesson-card-inner {
+                transform: none !important;
+            }
+            
+            .lesson-card-front,
+            .lesson-card-back {
+                position: relative;
+                transform: none !important;
+                backface-visibility: visible;
+            }
+            
+            .lesson-card-front {
+                display: flex;
+            }
+            
+            .lesson-card-back {
+                display: none;
+                padding: 20px 15px;
+            }
+            
+            .lesson-card.flipped .lesson-card-front {
+                display: none;
+            }
+            
+            .lesson-card.flipped .lesson-card-back {
+                display: flex;
+            }
+            
+            /* Mobile-specific styling for lesson details */
+            .lesson-card-back h3 {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+            }
+            
+            .lesson-details {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+            
+            .lesson-details h4 {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+            
+            .lesson-details li {
+                font-size: 0.85rem;
+                padding: 3px 0;
+                line-height: 1.3;
+            }
+            
+            .lesson-card-back .btn {
+                padding: 12px 24px;
+                font-size: 1rem;
+                margin-top: 10px;
             }
             
             .gallery-grid {
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
             
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
             .btn {
                 width: 200px;
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+            
+            .floating-notes {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .container {
+                padding: 0 15px;
             }
 
             .lesson-card {
-                height: auto;
-                min-height: 450px;
+                touch-action: manipulation;
             }
         }
 
@@ -916,7 +1001,7 @@
             }
             
             .section-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .image-placeholder, .video-placeholder {
@@ -929,7 +1014,57 @@
             }
             
             .lesson-card {
-                padding: 30px 20px;
+                padding: 20px 15px;
+                margin: 0 5px;
+                min-height: 350px;
+            }
+            
+            .card-icon {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 15px;
+            }
+            
+            .card-icon i {
+                font-size: 1.5rem;
+            }
+            
+            .lesson-card h3 {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+            
+            .lesson-card p {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+            
+            .price {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .age-range {
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+            
+            .btn {
+                width: 180px;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .contact-info {
+                padding: 20px;
+            }
+            
+            .nav-logo {
+                font-size: 20px;
+            }
+            
+            .hero {
+                padding: 100px 15px 30px;
             }
         }
     </style>
@@ -1238,9 +1373,9 @@
                     <div class="form-group">
                         <select name="lessonType" id="lessonType" required>
                             <option value="">Which lesson type interests you?</option>
-                            <option value="Little Sprouts (Ages 5-7)">Little Sprouts - $30/30min</option>
-                            <option value="Young Explorers (Ages 8-10)">Young Explorers - $45/45min</option>
-                            <option value="Rising Stars (Ages 11-14)">Rising Stars - $60/hour</option>
+                            <option value="Little Sprouts">Little Sprouts - $30/30min</option>
+                            <option value="Young Explorers">Young Explorers - $45/45min</option>
+                            <option value="Rising Stars">Rising Stars - $60/hour</option>
                             <option value="Not sure yet">Not sure yet - help me decide!</option>
                         </select>
                     </div>
@@ -1331,6 +1466,7 @@
 
         // Lesson card interactions
         let selectedCard = null;
+        const isMobile = window.innerWidth <= 768;
 
         document.querySelectorAll('.lesson-card').forEach(card => {
             // Ensure no cards are selected on load
@@ -1359,6 +1495,18 @@
                     selectedCard = card;
                 }
             });
+        });
+
+        // Handle window resize to adjust mobile behavior
+        window.addEventListener('resize', () => {
+            const newIsMobile = window.innerWidth <= 768;
+            if (newIsMobile !== isMobile) {
+                // Reset all cards when switching between mobile and desktop
+                document.querySelectorAll('.lesson-card').forEach(card => {
+                    card.classList.remove('flipped', 'selected');
+                });
+                selectedCard = null;
+            }
         });
 
         // Lesson button interactions
