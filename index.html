@@ -1696,7 +1696,34 @@
             }
         });
 
-        console.log('Piano Corner Studio loaded successfully!');
+        // Equalize contact section heights
+        function equalizeContactHeights() {
+            const contactInfo = document.querySelector('.contact-info');
+            const contactForm = document.querySelector('.contact-form');
+            
+            if (contactInfo && contactForm && window.innerWidth > 768) {
+                // Reset heights first
+                contactInfo.style.height = 'auto';
+                contactForm.style.height = 'auto';
+                
+                // Get the natural heights
+                const infoHeight = contactInfo.offsetHeight;
+                const formHeight = contactForm.offsetHeight;
+                
+                // Set both to the maximum height
+                const maxHeight = Math.max(infoHeight, formHeight);
+                contactInfo.style.height = maxHeight + 'px';
+                contactForm.style.height = maxHeight + 'px';
+            } else if (window.innerWidth <= 768) {
+                // Reset heights on mobile
+                contactInfo.style.height = 'auto';
+                contactForm.style.height = 'auto';
+            }
+        }
+
+        // Run on load and resize
+        window.addEventListener('load', equalizeContactHeights);
+        window.addEventListener('resize', equalizeContactHeights);
     </script>
 </body>
 </html>
