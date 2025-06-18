@@ -912,21 +912,21 @@
                 perspective: none;
             }
             
-            /* Disable flip animation on mobile for better UX */
+            /* Enable flip animation on mobile */
             .lesson-card-inner {
-                transform: none !important;
-                transition: none;
+                transform: none;
+                transition: transform 0.6s;
             }
             
             .lesson-card.flipped .lesson-card-inner {
-                transform: none !important;
+                transform: rotateY(180deg);
             }
             
             .lesson-card-front,
             .lesson-card-back {
-                position: relative;
-                transform: none !important;
-                backface-visibility: visible;
+                position: absolute;
+                transform: none;
+                backface-visibility: hidden;
             }
             
             .lesson-card-front {
@@ -934,16 +934,9 @@
             }
             
             .lesson-card-back {
-                display: none;
-                padding: 20px 15px;
-            }
-            
-            .lesson-card.flipped .lesson-card-front {
-                display: none;
-            }
-            
-            .lesson-card.flipped .lesson-card-back {
                 display: flex;
+                padding: 20px 15px;
+                transform: rotateY(180deg);
             }
             
             /* Mobile-specific styling for lesson details */
@@ -966,6 +959,12 @@
                 font-size: 0.85rem;
                 padding: 3px 0;
                 line-height: 1.3;
+                padding-left: 22px;
+            }
+            
+            .lesson-details li::before {
+                left: 4px;
+                font-size: 0.8rem;
             }
             
             .lesson-card-back .btn {
@@ -1177,7 +1176,7 @@
                             <span class="age-range">Ages 5-7</span>
                             <p>Perfect first piano experience! We use games, stories, and simple songs to introduce your little one to the magical world of music.</p>
                             <div class="price">$30/30min</div>
-                            <button class="btn btn-outline lesson-btn" data-lesson-type="Little Sprouts (Ages 5-7)" data-ages="5,6,7">Start the Adventure</button>
+                            <button class="btn btn-outline learn-more-btn">Learn More</button>
                         </div>
                         <div class="lesson-card-back">
                             <h3>Little Sprouts Details</h3>
@@ -1197,7 +1196,7 @@
                                     <li>Learning through play</li>
                                 </ul>
                             </div>
-                            <button class="btn btn-outline lesson-btn" data-lesson-type="Little Sprouts (Ages 5-7)" data-ages="5,6,7">Book This Lesson</button>
+                            <button class="btn btn-outline lesson-btn" data-lesson-type="Little Sprouts" data-ages="5,6,7">Start the Adventure</button>
                         </div>
                     </div>
                 </div>
@@ -1212,7 +1211,7 @@
                             <span class="age-range">Ages 8-10</span>
                             <p>Ready to explore more? We'll learn popular songs, fun technique games, and start reading music together.</p>
                             <div class="price">$45/45min</div>
-                            <button class="btn btn-outline lesson-btn" data-lesson-type="Young Explorers (Ages 8-10)" data-ages="8,9,10">Explore Music</button>
+                            <button class="btn btn-outline learn-more-btn">Learn More</button>
                         </div>
                         <div class="lesson-card-back">
                             <h3>Young Explorers Details</h3>
@@ -1232,7 +1231,7 @@
                                     <li>Learning favorite songs</li>
                                 </ul>
                             </div>
-                            <button class="btn btn-outline lesson-btn" data-lesson-type="Young Explorers (Ages 8-10)" data-ages="8,9,10">Book This Lesson</button>
+                            <button class="btn btn-outline lesson-btn" data-lesson-type="Young Explorers" data-ages="8,9,10">Explore Music</button>
                         </div>
                     </div>
                 </div>
@@ -1247,7 +1246,7 @@
                             <span class="age-range">Ages 11-14</span>
                             <p>For tweens and teens ready to shine! We'll work on their favorite songs, build confidence, and maybe even prepare for performances.</p>
                             <div class="price">$60/hour</div>
-                            <button class="btn btn-outline lesson-btn" data-lesson-type="Rising Stars (Ages 11-14)" data-ages="11,12,13,14">Reach for the Stars</button>
+                            <button class="btn btn-outline learn-more-btn">Learn More</button>
                         </div>
                         <div class="lesson-card-back">
                             <h3>Rising Stars Details</h3>
@@ -1267,7 +1266,7 @@
                                     <li>Building serious skills</li>
                                 </ul>
                             </div>
-                            <button class="btn btn-outline lesson-btn" data-lesson-type="Rising Stars (Ages 11-14)" data-ages="11,12,13,14">Book This Lesson</button>
+                            <button class="btn btn-outline lesson-btn" data-lesson-type="Rising Stars" data-ages="11,12,13,14">Reach for the Stars</button>
                         </div>
                     </div>
                 </div>
