@@ -1504,6 +1504,18 @@
     </footer>
 
     <script>
+        // Wake up the server when page loads
+        window.addEventListener('load', async () => {
+            try {
+                await fetch('https://email-server-ca44.onrender.com/', {
+                    method: 'GET'
+                });
+                console.log('Server pinged successfully');
+            } catch (error) {
+                console.log('Server ping failed, but that\'s okay');
+            }
+        });
+        
         // Mobile Navigation Toggle
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
