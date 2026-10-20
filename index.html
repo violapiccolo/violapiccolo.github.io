@@ -1115,6 +1115,7 @@
         "openingHours": ["Mo-Fr 15:00-19:00", "Sa 10:00-16:00"]
     }
     </script>
+    <script defer src="https://view.promontoryai.com/pa.js" data-website-id="347694ca-a03f-40b3-9a1a-5ab01f0b9933" data-domains="pianocorner.studio" data-exclude-hash="true"></script>
 </head>
 <body>
     <a href="#home" class="skip-link">Skip to content</a>
@@ -1644,6 +1645,7 @@
 
                 if (result.success) {
                     // Success
+                    if (window.umami) umami.track('Lesson request');
                     alert('Thank you for reaching out! I\'ll get back to you soon to schedule your child\'s first lesson.');
                     contactForm.reset();
                     // Remove any error states
